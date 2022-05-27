@@ -19,7 +19,7 @@ export default class CostumersController {
 
   async getById(req, res, next) {
     try {
-      const customer = await this.costumersService.getById(req.query);
+      const customer = await this.costumersService.getById(req.params);
 
       if (!customer) {
         throw new AppError("Customer not found", 404);

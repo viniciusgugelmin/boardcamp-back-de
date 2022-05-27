@@ -11,13 +11,23 @@ export default class GamesService {
       return rows;
     }
 
-    const query = SqlString.format("SELECT * FROM games WHERE name LIKE ?", [
+    const query = SqlString.format("SELECT * FROM games WHERE name ILIKE ?", [
       `${name}%`,
     ]);
+    console.log(query);
 
     const { rows } = await db.query(query);
 
     return rows;
+  }
+
+  async getById({ id }) {
+    const db = await connectDB();
+
+    const query = SqlString.format("SELECT * FROM games WHERE id = ?", [id]);
+    const { rows } = await db.query(query);
+
+    return rows[0];
   }
 
   async getByName({ name }) {

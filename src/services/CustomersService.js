@@ -11,9 +11,10 @@ export default class CustomersService {
       return rows;
     }
 
-    const query = SqlString.format("SELECT * FROM games WHERE cpf LIKE ?", [
-      `${cpf}%`,
-    ]);
+    const query = SqlString.format(
+      "SELECT * FROM customers WHERE cpf ILIKE ?",
+      [`${cpf}%`]
+    );
 
     const { rows } = await db.query(query);
 
@@ -34,9 +35,10 @@ export default class CustomersService {
   async getByCpf({ cpf }, { id }) {
     const db = await connectDB();
 
-    const query = SqlString.format("SELECT * FROM customers WHERE cpf LIKE ?", [
-      `${cpf}%`,
-    ]);
+    const query = SqlString.format(
+      "SELECT * FROM customers WHERE cpf ILIKE ?",
+      [`${cpf}%`]
+    );
     const { rows } = await db.query(query);
 
     if (id) {

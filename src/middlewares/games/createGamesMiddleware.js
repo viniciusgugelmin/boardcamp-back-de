@@ -31,7 +31,7 @@ export default async function createCategoriesMiddleware(req, res, next) {
     const category = await categoryService.getById({ id: req.body.categoryId });
 
     if (!category) {
-      throw new AppError("Category not found", 404);
+      throw new AppError("Category not found", 400);
     }
 
     res.locals.category = category;

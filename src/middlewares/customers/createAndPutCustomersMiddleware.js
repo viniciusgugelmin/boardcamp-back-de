@@ -5,8 +5,8 @@ import CustomersService from "../../services/CustomersService.js";
 export default async function createAndPutCustomersMiddleware(req, res, next) {
   const schema = joi.object({
     name: joi.string().required(),
-    phone: joi.string().required(),
-    cpf: joi.string().min(11).max(11).regex(/^\d+$/).required(),
+    phone: joi.string().length(11).required(),
+    cpf: joi.string().length(11).regex(/^\d+$/).required(),
     birthday: joi.date().required(),
   });
 
