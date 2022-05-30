@@ -22,15 +22,15 @@ export default async function connectDB() {
     };
   }
 
-  if (process.env.MODE === "PROD") {
-    connectionParams.ssl = {
-      rejectUnauthorized: false,
-    };
-  }
-
   const { Pool } = pg;
 
   const db = new Pool(connectionParams);
+
+  if (process.env.MODE === "PROD") {
+    db.ssl = {
+      rejectUnauthorized: false,
+    };
+  }
 
   await db.connect();
 
