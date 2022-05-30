@@ -20,7 +20,7 @@ export default async function connectDB() {
   if (process.env.DB_URL) {
     connectionParams = {
       connectionString: process.env.DB_URL,
-      ssl: { rejectUnauthorized: false },
+      ssl: { rejectUnauthorized: true },
     };
   }
 
